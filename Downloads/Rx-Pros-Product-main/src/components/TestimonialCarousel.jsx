@@ -1,36 +1,110 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function TestimonialCarousel({ slides }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [direction, setDirection] = useState('next');
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const carouselRef = useRef(null);
 
-  const goToSlide = (index) => {
+  const minSwipeDistance = 50;
+
+  const goToSlide = (index, dir) => {
     if (isTransitioning) return;
+    setDirection(dir);
     setIsTransitioning(true);
-    setCurrentIndex(index);
-    setTimeout(() => setIsTransitioning(false), 500);
+    
+    setTimeout(() => {
+      setCurrentIndex(index);
+      setIsTransitioning(false);
+    }, 50);
   };
 
   const goToPrevious = () => {
     if (isTransitioning) return;
     const newIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
-    goToSlide(newIndex);
+    goToSlide(newIndex, 'prev');
   };
 
   const goToNext = () => {
     if (isTransitioning) return;
     const newIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
-    goToSlide(newIndex);
+    goToSlide(newIndex, 'next');
+  };
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrevious();
+    }
   };
 
   const currentSlide = slides[currentIndex];
 
+  const getSlideClass = (position) => {
+    const baseClass = "absolute top-1/2 -translate-y-1/2 transition-all duration-1200 ease-in-out";
+    
+    if (isTransitioning) {
+      if (direction === 'next') {
+        // Sliding to next - images move left
+        switch(position) {
+          case 'leftFar': return `${baseClass} -left-[50%] z-20 scale-[0.75] md:scale-[0.80] opacity-0`;
+          case 'leftNear': return `${baseClass} left-[8%] md:left-[10%] lg:left-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-50`;
+          case 'center': return `${baseClass} left-[22%] md:left-[25%] lg:left-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
+          case 'rightNear': return `${baseClass} left-1/2 -translate-x-1/2 z-50 scale-100 opacity-100`;
+          case 'rightFar': return `${baseClass} right-[22%] md:right-[25%] lg:right-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
+        }
+      } else {
+        // Sliding to previous - images move right
+        switch(position) {
+          case 'leftFar': return `${baseClass} left-[22%] md:left-[25%] lg:left-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
+          case 'leftNear': return `${baseClass} left-1/2 -translate-x-1/2 z-50 scale-100 opacity-100`;
+          case 'center': return `${baseClass} right-[22%] md:right-[25%] lg:right-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
+          case 'rightNear': return `${baseClass} right-[8%] md:right-[10%] lg:right-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-50`;
+          case 'rightFar': return `${baseClass} -right-[50%] z-20 scale-[0.75] md:scale-[0.80] opacity-0`;
+        }
+      }
+    }
+    
+    // Normal positions
+    switch(position) {
+      case 'leftFar': return `${baseClass} left-[8%] md:left-[10%] lg:left-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-50`;
+      case 'leftNear': return `${baseClass} left-[22%] md:left-[25%] lg:left-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
+      case 'center': return `${baseClass} left-1/2 -translate-x-1/2 z-50 scale-100 opacity-100`;
+      case 'rightNear': return `${baseClass} right-[22%] md:right-[25%] lg:right-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
+      case 'rightFar': return `${baseClass} right-[8%] md:right-[10%] lg:right-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-50`;
+    }
+  };
+
   return (
     <div className="w-full max-w-6xl mx-auto px-4">
       {/* Carousel Container */}
-      <div className="relative h-[280px] md:h-[320px] lg:h-[360px] mb-8 md:mb-12">
+      <div 
+        ref={carouselRef}
+        className="relative h-[280px] md:h-[320px] lg:h-[360px] mb-8 md:mb-12 cursor-grab active:cursor-grabbing overflow-hidden"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         {/* Left Far Image */}
-        <div className="absolute top-1/2 -translate-y-1/2 left-[8%] md:left-[10%] lg:left-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-50 transition-all duration-500 ease-in-out">
+        <div className={getSlideClass('leftFar')}>
           <div className="relative w-[240px] md:w-[380px] lg:w-[480px] h-[240px] md:h-[280px] lg:h-[320px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
             <img
               src={currentSlide.leftFar}
@@ -41,7 +115,7 @@ function TestimonialCarousel({ slides }) {
         </div>
 
         {/* Left Near Image */}
-        <div className="absolute top-1/2 -translate-y-1/2 left-[22%] md:left-[25%] lg:left-[28%] z-40 scale-[0.85] md:scale-90 opacity-80 transition-all duration-500 ease-in-out">
+        <div className={getSlideClass('leftNear')}>
           <div className="relative w-[240px] md:w-[380px] lg:w-[480px] h-[240px] md:h-[280px] lg:h-[320px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
             <img
               src={currentSlide.leftNear}
@@ -52,7 +126,7 @@ function TestimonialCarousel({ slides }) {
         </div>
 
         {/* Center Image */}
-        <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-50 scale-100 opacity-100 transition-all duration-500 ease-in-out">
+        <div className={getSlideClass('center')}>
           <div className="relative w-[240px] md:w-[380px] lg:w-[480px] h-[240px] md:h-[280px] lg:h-[320px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
             <img
               src={currentSlide.center}
@@ -72,7 +146,7 @@ function TestimonialCarousel({ slides }) {
         </div>
 
         {/* Right Near Image */}
-        <div className="absolute top-1/2 -translate-y-1/2 right-[22%] md:right-[25%] lg:right-[28%] z-40 scale-[0.85] md:scale-90 opacity-80 transition-all duration-500 ease-in-out">
+        <div className={getSlideClass('rightNear')}>
           <div className="relative w-[240px] md:w-[380px] lg:w-[480px] h-[240px] md:h-[280px] lg:h-[320px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
             <img
               src={currentSlide.rightNear}
@@ -83,7 +157,7 @@ function TestimonialCarousel({ slides }) {
         </div>
 
         {/* Right Far Image */}
-        <div className="absolute top-1/2 -translate-y-1/2 right-[8%] md:right-[10%] lg:right-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-50 transition-all duration-500 ease-in-out">
+        <div className={getSlideClass('rightFar')}>
           <div className="relative w-[240px] md:w-[380px] lg:w-[480px] h-[240px] md:h-[280px] lg:h-[320px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
             <img
               src={currentSlide.rightFar}
