@@ -15,7 +15,7 @@ function HeroSection() {
   };
 
   return (
-    <section className="bg-white py-6 md:py-8 px-4 md:px-8 lg:px-12">
+    <section className="bg-white py-6 md:py-8 px-6 md:px-10 lg:px-24">
       <div className="max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-start">
           {/* Product Carousel */}
@@ -77,7 +77,7 @@ function HeroSection() {
                     <span className="font-roboto font-medium text-sm md:text-body text-text-secondary">
                       {productInfo.status}
                     </span>
-                    <img src="/icons/status-dot.svg" alt="" className="w-2 h-2" />
+                    <div className="w-2 h-2 rounded-full bg-accent-green"></div>
                   </div>
                   <span className="font-roboto font-medium text-sm md:text-body text-text-primary">
                     {productInfo.statusDate}
