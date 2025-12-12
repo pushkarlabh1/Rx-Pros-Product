@@ -1,6 +1,5 @@
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
-import TabNavigation from './components/TabNavigation';
 import FeaturesSection from './components/FeaturesSection';
 import ProcessSection from './components/ProcessSection';
 import TestimonialsSection from './components/TestimonialsSection';
@@ -12,7 +11,6 @@ function App() {
     <div className="min-h-screen bg-white">
       <Header />
       <HeroSection />
-      <TabNavigation />
       <FeaturesSection />
       <ProcessSection />
       <TestimonialsSection />

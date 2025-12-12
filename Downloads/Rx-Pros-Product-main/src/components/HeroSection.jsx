@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { productInfo } from '../data/mockData';
+import { productInfo, tabNavItems } from '../data/mockData';
 
 function HeroSection() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -143,6 +143,21 @@ function HeroSection() {
                 <img src={productInfo.badges} alt="Badges" className="h-12 md:h-16" />
               )}
             </div>
+          </div>
+        </div>
+
+        {/* Tab Navigation */}
+        <div className="mt-6 md:mt-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+            {tabNavItems.map((item, index) => (
+              <a
+                key={index}
+                href={item.href}
+                className="font-nunito font-semibold text-sm md:text-base text-text-secondary bg-gray-100 hover:bg-gray-200 transition-colors px-4 md:px-6 py-3 md:py-4 rounded-2xl text-center whitespace-nowrap"
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
       </div>
