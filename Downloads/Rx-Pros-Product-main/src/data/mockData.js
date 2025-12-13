@@ -119,47 +119,29 @@ export const tabNavItems = [
 export const testimonialSlides = [
   {
     id: 1,
-    center: "/images/Slide Item — 1.png",
-    leftNear: "/images/Slide Item — 2.png",
-    leftFar: "/images/Slide Item — 6.png",
+    center: "/images/Slide Item — 6.png",
+    leftNear: "/images/Slide Item — 1.png",
+    leftFar: "/images/Slide Item — 2.png",
     rightNear: "/images/Slide Item — 1 copy.png",
-    rightFar: "/images/Slide Item — 6 copy.png",
+    rightFar: "/images/Slide Item — 2 copy.png",
     hasVideo: true
   },
   {
     id: 2,
-    center: "/images/Slide Item — 2.png",
-    leftNear: "/images/Slide Item — 6.png",
-    leftFar: "/images/Slide Item — 1.png",
-    rightNear: "/images/Slide Item — 2 copy.png",
-    rightFar: "/images/Slide Item — 1 copy.png",
+    center: "/images/Slide Item — 1.png",
+    leftNear: "/images/Slide Item — 6 copy.png",
+    leftFar: "/images/Slide Item — 2 copy.png",
+    rightNear: "/images/Slide Item — 2.png",
+    rightFar: "/images/Slide Item — 6.png",
     hasVideo: false
   },
   {
     id: 3,
-    center: "/images/Slide Item — 6.png",
-    leftNear: "/images/Slide Item — 1.png",
-    leftFar: "/images/Slide Item — 2.png",
-    rightNear: "/images/Slide Item — 6 copy.png",
-    rightFar: "/images/Slide Item — 2 copy.png",
-    hasVideo: false
-  },
-  {
-    id: 4,
-    center: "/images/Slide Item — 1 copy.png",
-    leftNear: "/images/Slide Item — 2 copy.png",
-    leftFar: "/images/Slide Item — 6 copy.png",
-    rightNear: "/images/Slide Item — 1.png",
-    rightFar: "/images/Slide Item — 6.png",
-    hasVideo: true
-  },
-  {
-    id: 5,
     center: "/images/Slide Item — 2 copy.png",
-    leftNear: "/images/Slide Item — 6 copy.png",
+    leftNear: "/images/Slide Item — 6.png",
     leftFar: "/images/Slide Item — 1 copy.png",
-    rightNear: "/images/Slide Item — 2.png",
+    rightNear: "/images/Slide Item — 6 copy.png",
     rightFar: "/images/Slide Item — 1.png",
-    hasVideo: false
+    hasVideo: true
   }
 ];

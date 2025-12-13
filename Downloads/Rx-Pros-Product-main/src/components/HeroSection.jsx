@@ -20,7 +20,7 @@ function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-start">
           {/* Product Carousel */}
           <div className="relative bg-gradient-to-br from-primary to-primary-light rounded-3xl shadow-product p-6 md:p-10 flex flex-col items-center h-[500px] md:h-[700px]">
-            <div className="absolute top-4 md:top-8 left-1/2 transform -translate-x-1/2 bg-white px-3 md:px-4 py-1.5 md:py-2 rounded-full">
+            <div className="absolute top-4 md:top-8 left-1/2 transform -translate-x-1/2 bg-white px-3 md:px-4 py-1.5 md:py-2 rounded-[10px]">
               <span className="font-manrope font-medium text-xs md:text-sm">FSA & HSA eligible</span>
             </div>
             

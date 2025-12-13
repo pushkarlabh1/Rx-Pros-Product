@@ -65,31 +65,31 @@ function TestimonialCarousel({ slides }) {
       if (direction === 'next') {
         // Sliding to next - images move left
         switch(position) {
-          case 'leftFar': return `${baseClass} -left-[50%] z-20 scale-[0.75] md:scale-[0.80] opacity-0`;
-          case 'leftNear': return `${baseClass} left-[8%] md:left-[10%] lg:left-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-50`;
-          case 'center': return `${baseClass} left-[22%] md:left-[25%] lg:left-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
+          case 'leftFar': return `${baseClass} -left-[45%] z-10 scale-[0.65] md:scale-[0.70] opacity-0`;
+          case 'leftNear': return `${baseClass} left-[8%] md:left-[10%] lg:left-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-70`;
+          case 'center': return `${baseClass} left-[24%] md:left-[26%] lg:left-[28%] z-40 scale-[0.85] md:scale-[0.90] opacity-90`;
           case 'rightNear': return `${baseClass} left-1/2 -translate-x-1/2 z-50 scale-100 opacity-100`;
-          case 'rightFar': return `${baseClass} right-[22%] md:right-[25%] lg:right-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
+          case 'rightFar': return `${baseClass} right-[24%] md:right-[26%] lg:right-[28%] z-40 scale-[0.85] md:scale-[0.90] opacity-90`;
         }
       } else {
         // Sliding to previous - images move right
         switch(position) {
-          case 'leftFar': return `${baseClass} left-[22%] md:left-[25%] lg:left-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
+          case 'leftFar': return `${baseClass} left-[24%] md:left-[26%] lg:left-[28%] z-40 scale-[0.85] md:scale-[0.90] opacity-90`;
           case 'leftNear': return `${baseClass} left-1/2 -translate-x-1/2 z-50 scale-100 opacity-100`;
-          case 'center': return `${baseClass} right-[22%] md:right-[25%] lg:right-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
-          case 'rightNear': return `${baseClass} right-[8%] md:right-[10%] lg:right-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-50`;
-          case 'rightFar': return `${baseClass} -right-[50%] z-20 scale-[0.75] md:scale-[0.80] opacity-0`;
+          case 'center': return `${baseClass} right-[24%] md:right-[26%] lg:right-[28%] z-40 scale-[0.85] md:scale-[0.90] opacity-90`;
+          case 'rightNear': return `${baseClass} right-[8%] md:right-[10%] lg:right-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-70`;
+          case 'rightFar': return `${baseClass} -right-[45%] z-10 scale-[0.65] md:scale-[0.70] opacity-0`;
         }
       }
     }
     
     // Normal positions
     switch(position) {
-      case 'leftFar': return `${baseClass} left-[8%] md:left-[10%] lg:left-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-50`;
-      case 'leftNear': return `${baseClass} left-[22%] md:left-[25%] lg:left-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
+      case 'leftFar': return `${baseClass} left-[0%] md:left-[2%] lg:left-[4%] z-10 scale-[0.65] md:scale-[0.70] opacity-40`;
+      case 'leftNear': return `${baseClass} left-[12%] md:left-[14%] lg:left-[16%] z-30 scale-[0.80] md:scale-[0.85] opacity-75`;
       case 'center': return `${baseClass} left-1/2 -translate-x-1/2 z-50 scale-100 opacity-100`;
-      case 'rightNear': return `${baseClass} right-[22%] md:right-[25%] lg:right-[28%] z-40 scale-[0.85] md:scale-90 opacity-80`;
-      case 'rightFar': return `${baseClass} right-[8%] md:right-[10%] lg:right-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-50`;
+      case 'rightNear': return `${baseClass} right-[12%] md:right-[14%] lg:right-[16%] z-30 scale-[0.80] md:scale-[0.85] opacity-75`;
+      case 'rightFar': return `${baseClass} right-[0%] md:right-[2%] lg:right-[4%] z-10 scale-[0.65] md:scale-[0.70] opacity-40`;
     }
   };
 
