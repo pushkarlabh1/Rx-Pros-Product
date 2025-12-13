@@ -42,9 +42,17 @@ function FAQSection() {
           ))}
         </div>
         
-        <p className="font-roboto text-tiny text-text-muted leading-relaxed text-center">
-          *Results vary based on starting weight and program adherence. Inches lost from hips, waist, chest, thighs and arms in the first month. These users exercised daily and ate a reduced-calorie diet. Their fat loss is not typical. Results from RxPros may vary. Medication prescriptions are at the discretion of medical providers and may not be suitable for everyone. RxPros programs typically result in 1-2 lbs per week weight loss in 4 weeks, involving a healthy diet and exercise changes. Consult a healthcare professional before using RxPros or starting any weight loss program.
-        </p>
+        <div className="font-roboto text-[10px] text-[#9CA3AF] leading-[1.5] text-center">
+          <div className="w-full px-0 mx-auto">
+            *Results vary based on starting weight and program adherence. Inches lost from hips, waist, chest, thighs and arms in the first month. These users exercised daily & ate a reduced-calorie diet. Their fat loss is not typical. Results from
+          </div>
+          <div className="w-full px-8 mx-auto">
+            RxPros may vary. Medication prescriptions are at the discretion of medical providers and may not be suitable for everyone. RxPros programs typically result in 1-2 lbs per week weight loss in 4 weeks,
+          </div>
+          <div className="w-full px-16 mx-auto">
+            involving a healthy diet and exercise changes. Consult a healthcare professional before using RxPros or starting any weight loss program.
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 function TestimonialCarousel({ slides }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -65,47 +65,47 @@ function TestimonialCarousel({ slides }) {
       if (direction === 'next') {
         // Sliding to next - images move left
         switch(position) {
-          case 'leftFar': return `${baseClass} -left-[45%] z-10 scale-[0.65] md:scale-[0.70] opacity-0`;
-          case 'leftNear': return `${baseClass} left-[8%] md:left-[10%] lg:left-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-70`;
-          case 'center': return `${baseClass} left-[24%] md:left-[26%] lg:left-[28%] z-40 scale-[0.85] md:scale-[0.90] opacity-90`;
-          case 'rightNear': return `${baseClass} left-1/2 -translate-x-1/2 z-50 scale-100 opacity-100`;
-          case 'rightFar': return `${baseClass} right-[24%] md:right-[26%] lg:right-[28%] z-40 scale-[0.85] md:scale-[0.90] opacity-90`;
+          case 'leftFar': return `${baseClass} -left-[45%] z-10 scale-[0.60] opacity-0`;
+          case 'leftNear': return `${baseClass} left-[5%] z-20 scale-[0.70] opacity-40`;
+          case 'center': return `${baseClass} left-[20%] z-30 scale-[0.85] opacity-70`;
+          case 'rightNear': return `${baseClass} left-1/2 -translate-x-1/2 z-40 scale-100 opacity-100`;
+          case 'rightFar': return `${baseClass} right-[20%] z-30 scale-[0.85] opacity-70`;
         }
       } else {
         // Sliding to previous - images move right
         switch(position) {
-          case 'leftFar': return `${baseClass} left-[24%] md:left-[26%] lg:left-[28%] z-40 scale-[0.85] md:scale-[0.90] opacity-90`;
-          case 'leftNear': return `${baseClass} left-1/2 -translate-x-1/2 z-50 scale-100 opacity-100`;
-          case 'center': return `${baseClass} right-[24%] md:right-[26%] lg:right-[28%] z-40 scale-[0.85] md:scale-[0.90] opacity-90`;
-          case 'rightNear': return `${baseClass} right-[8%] md:right-[10%] lg:right-[12%] z-30 scale-[0.75] md:scale-[0.80] opacity-70`;
-          case 'rightFar': return `${baseClass} -right-[45%] z-10 scale-[0.65] md:scale-[0.70] opacity-0`;
+          case 'leftFar': return `${baseClass} left-[20%] z-30 scale-[0.85] opacity-70`;
+          case 'leftNear': return `${baseClass} left-1/2 -translate-x-1/2 z-40 scale-100 opacity-100`;
+          case 'center': return `${baseClass} right-[20%] z-30 scale-[0.85] opacity-70`;
+          case 'rightNear': return `${baseClass} right-[5%] z-20 scale-[0.70] opacity-40`;
+          case 'rightFar': return `${baseClass} -right-[45%] z-10 scale-[0.60] opacity-0`;
         }
       }
     }
     
-    // Normal positions
+    // Normal positions - matching Figma design exactly
     switch(position) {
-      case 'leftFar': return `${baseClass} left-[0%] md:left-[2%] lg:left-[4%] z-10 scale-[0.65] md:scale-[0.70] opacity-40`;
-      case 'leftNear': return `${baseClass} left-[12%] md:left-[14%] lg:left-[16%] z-30 scale-[0.80] md:scale-[0.85] opacity-75`;
-      case 'center': return `${baseClass} left-1/2 -translate-x-1/2 z-50 scale-100 opacity-100`;
-      case 'rightNear': return `${baseClass} right-[12%] md:right-[14%] lg:right-[16%] z-30 scale-[0.80] md:scale-[0.85] opacity-75`;
-      case 'rightFar': return `${baseClass} right-[0%] md:right-[2%] lg:right-[4%] z-10 scale-[0.65] md:scale-[0.70] opacity-40`;
+      case 'leftFar': return `${baseClass} left-0 z-10 scale-[0.65] opacity-30`;
+      case 'leftNear': return `${baseClass} left-[10%] z-20 scale-[0.80] opacity-50`;
+      case 'center': return `${baseClass} left-1/2 -translate-x-1/2 z-40 scale-100 opacity-100`;
+      case 'rightNear': return `${baseClass} right-[10%] z-20 scale-[0.80] opacity-50`;
+      case 'rightFar': return `${baseClass} right-0 z-10 scale-[0.65] opacity-30`;
     }
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4">
+    <div className="w-full max-w-7xl mx-auto px-4">
       {/* Carousel Container */}
       <div 
         ref={carouselRef}
-        className="relative h-[280px] md:h-[320px] lg:h-[360px] mb-8 md:mb-12 cursor-grab active:cursor-grabbing overflow-hidden"
+        className="relative h-[280px] md:h-[360px] lg:h-[440px] mb-8 cursor-grab active:cursor-grabbing overflow-visible"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
         {/* Left Far Image */}
         <div className={getSlideClass('leftFar')}>
-          <div className="relative w-[240px] md:w-[380px] lg:w-[480px] h-[240px] md:h-[280px] lg:h-[320px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative w-[280px] md:w-[380px] lg:w-[500px] h-[210px] md:h-[285px] lg:h-[375px] rounded-[20px] md:rounded-[28px] overflow-hidden shadow-xl">
             <img
               src={currentSlide.leftFar}
               alt="Background slide"
@@ -116,7 +116,7 @@ function TestimonialCarousel({ slides }) {
 
         {/* Left Near Image */}
         <div className={getSlideClass('leftNear')}>
-          <div className="relative w-[240px] md:w-[380px] lg:w-[480px] h-[240px] md:h-[280px] lg:h-[320px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative w-[280px] md:w-[380px] lg:w-[500px] h-[210px] md:h-[285px] lg:h-[375px] rounded-[20px] md:rounded-[28px] overflow-hidden shadow-2xl">
             <img
               src={currentSlide.leftNear}
               alt="Side slide"
@@ -127,7 +127,7 @@ function TestimonialCarousel({ slides }) {
 
         {/* Center Image */}
         <div className={getSlideClass('center')}>
-          <div className="relative w-[240px] md:w-[380px] lg:w-[480px] h-[240px] md:h-[280px] lg:h-[320px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative w-[380px] md:w-[540px] lg:w-[720px] h-[215px] md:h-[305px] lg:h-[405px] rounded-[20px] md:rounded-[28px] overflow-hidden shadow-2xl">
             <img
               src={currentSlide.center}
               alt={`Testimonial ${currentSlide.id}`}
@@ -137,8 +137,8 @@ function TestimonialCarousel({ slides }) {
             {/* Play Button Overlay */}
             {currentSlide.hasVideo && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <button className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-white/80 hover:bg-white/95 rounded-full flex items-center justify-center transition-all shadow-xl backdrop-blur-sm">
-                  <div className="w-0 h-0 border-t-[10px] md:border-t-[12px] lg:border-t-[14px] border-t-transparent border-l-[16px] md:border-l-[20px] lg:border-l-[24px] border-l-gray-600 border-b-[10px] md:border-b-[12px] lg:border-b-[14px] border-b-transparent ml-1"></div>
+                <button className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center transition-all backdrop-blur-sm">
+                  <div className="w-0 h-0 border-t-[8px] md:border-t-[10px] lg:border-t-[12px] border-t-transparent border-l-[14px] md:border-l-[18px] lg:border-l-[22px] border-l-white border-b-[8px] md:border-b-[10px] lg:border-b-[12px] border-b-transparent ml-1"></div>
                 </button>
               </div>
             )}
@@ -147,7 +147,7 @@ function TestimonialCarousel({ slides }) {
 
         {/* Right Near Image */}
         <div className={getSlideClass('rightNear')}>
-          <div className="relative w-[240px] md:w-[380px] lg:w-[480px] h-[240px] md:h-[280px] lg:h-[320px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative w-[280px] md:w-[380px] lg:w-[500px] h-[210px] md:h-[285px] lg:h-[375px] rounded-[20px] md:rounded-[28px] overflow-hidden shadow-2xl">
             <img
               src={currentSlide.rightNear}
               alt="Side slide"
@@ -158,7 +158,7 @@ function TestimonialCarousel({ slides }) {
 
         {/* Right Far Image */}
         <div className={getSlideClass('rightFar')}>
-          <div className="relative w-[240px] md:w-[380px] lg:w-[480px] h-[240px] md:h-[280px] lg:h-[320px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative w-[280px] md:w-[380px] lg:w-[500px] h-[210px] md:h-[285px] lg:h-[375px] rounded-[20px] md:rounded-[28px] overflow-hidden shadow-xl">
             <img
               src={currentSlide.rightFar}
               alt="Background slide"
@@ -166,44 +166,44 @@ function TestimonialCarousel({ slides }) {
             />
           </div>
         </div>
+      </div>
 
-        {/* Navigation Buttons */}
+      {/* Navigation Arrows and Dots - Bottom */}
+      <div className="flex items-center justify-center gap-4 md:gap-6">
+        {/* Previous Button */}
         <button
           onClick={goToPrevious}
           disabled={isTransitioning}
-          className="absolute left-2 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-[60] w-10 h-10 md:w-11 md:h-11 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-all shadow-xl disabled:opacity-50 backdrop-blur-sm"
+          className="w-4 h-4 flex items-center justify-center transition-all disabled:opacity-30 hover:opacity-70"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="w-5 h-5">
-            <path d="M15 18L9 12L15 6" stroke="#666" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <img src="/icons/arrow-left.svg" alt="Previous" className="w-full h-full" />
         </button>
 
+        {/* Dots Navigation */}
+        <div className="flex items-center justify-center gap-2 md:gap-3">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index, index > currentIndex ? 'next' : 'prev')}
+              disabled={isTransitioning}
+              className={`transition-all duration-300 rounded-full disabled:opacity-50 ${
+                currentIndex === index
+                  ? 'w-3 h-3 md:w-3.5 md:h-3.5 bg-primary-light'
+                  : 'w-2 h-2 md:w-2.5 md:h-2.5 bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Next Button */}
         <button
           onClick={goToNext}
           disabled={isTransitioning}
-          className="absolute right-2 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-[60] w-10 h-10 md:w-11 md:h-11 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-all shadow-xl disabled:opacity-50 backdrop-blur-sm"
+          className="w-4 h-4 flex items-center justify-center transition-all disabled:opacity-30 hover:opacity-70"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="w-5 h-5">
-            <path d="M9 18L15 12L9 6" stroke="#666" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <img src="/icons/arrow-right.svg" alt="Next" className="w-full h-full" />
         </button>
-      </div>
-
-      {/* Dots Navigation */}
-      <div className="flex items-center justify-center gap-2 md:gap-3">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            disabled={isTransitioning}
-            className={`transition-all duration-300 rounded-full disabled:opacity-50 ${
-              currentIndex === index
-                ? 'w-3 h-3 md:w-4 md:h-4 bg-primary-light'
-                : 'w-2 h-2 md:w-3 md:h-3 bg-gray-300 hover:bg-gray-400'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
       </div>
     </div>
   );
